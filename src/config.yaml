@@ -2,6 +2,9 @@
 
 model:
   cat_boost:
-    path: 'model/best/ba_cat_boost.joblib'
-    pipeline: 'model/best/ba_cat_boost_pipeline.joblib'
-    params: 'model/best/ba_cat_boost_params.joblib'
+    path: 'models/best/ba_cat_boost.joblib'
+    pipeline: 'models/best/ba_cat_boost_pipeline.joblib'
+    params: 'models/best/ba_cat_boost_params.joblib'
+
+dataset:
+  path: 'data/customer_booking.csv'
