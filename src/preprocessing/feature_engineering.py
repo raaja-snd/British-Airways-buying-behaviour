@@ -79,6 +79,3 @@ def engineer_features(df):
     df = create_interaction_features(df)
     return df
 
-def get_feature_enginerring_pipeline():
-    feature_engineering_pipeline = FunctionTransformer(engineer_features,validate=False)
-    feature_engineering_pipeline.set_output(transform='pandas')

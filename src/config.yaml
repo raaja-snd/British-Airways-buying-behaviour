@@ -1,0 +1,7 @@
+
+
+model:
+  cat_boost:
+    path: 'model/best/ba_cat_boost.joblib'
+    pipeline: 'model/best/ba_cat_boost_pipeline.joblib'
+    params: 'model/best/ba_cat_boost_params.joblib'
