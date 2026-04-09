@@ -63,5 +63,3 @@ class XGBoostTrainer(BaseTrainer):
         xg_pred = self.xgb_cv.best_estimator_.predict(X_test_processed)
         report = classification_report(self.y_test,xg_pred)
         print(report)
-
-

@@ -35,6 +35,19 @@ def build_and_save_Cat_pipeline():
     ])
     joblib.dump(pipeline,parent/f'{config['model']['cat_boost']['pipeline']}')
 
+def build_and_save_pipeline():
+    df,labels = _get_dataset()
+
+    X_train,X_test,y_train,y_test = get_train_test_data(df,labels)
+    preprocess_pipeline = joblib.load(parent/f'{config['pipeline']['preprocessing_cat']}')
+    model_path = parent/f'{config['model']['cat_boost']['path']}'
+    model= joblib.load(model_path)
+    pipeline = Pipeline([
+         ('feature_preprocess',preprocess_pipeline),
+         ('model',model)
+    ])
+    joblib.dump(pipeline,parent/f'{config['model']['cat_boost']['pipeline']}')
+
 if __name__ in '__main__':
      build_and_save_Cat_pipeline()
     

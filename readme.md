@@ -22,7 +22,7 @@ The app allows users to interact with the model in two ways:
 2.  **Batch Processing:** Upload a CSV file to generate predictions for thousands of records at once.
 
 ### App Preview
-![Main Interface](./img/1.png)
+<img src="./img/1.png" width="800">
 
 ---
 
@@ -36,7 +36,7 @@ The app allows users to interact with the model in two ways:
 ---
 
 ## 📈 Visualizing the Dashboard
-![Prediction Interface](./img/2.png)
+<img src="./img/2.png" width="800">
 
 ---
 
