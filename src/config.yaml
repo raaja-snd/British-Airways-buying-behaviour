@@ -1,4 +1,7 @@
 
+pipeline:
+  preprocessing: 'models/pipeline/preprocessing_pipeline.joblib'
+  preprocessing_cat: 'models/pipeline/preprocessing_cat_pipeline.joblib'
 
 model:
   cat_boost:
