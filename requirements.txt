@@ -1,0 +1,18 @@
+# Modeling & Pipelines
+catboost==1.2.10
+xgboost==3.2.0
+lightgbm==4.6.0
+scikit-learn==1.8.0
+imbalanced-learn
+joblib==1.5.3
+
+# Data Handling & Config
+pandas==3.0.2
+numpy==2.4.4
+PyYAML==6.0.3
+
+
+# UI & Visualization
+streamlit==1.56.0
+matplotlib==3.10.8
+seaborn==0.13.2
