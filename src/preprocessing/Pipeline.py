@@ -34,6 +34,19 @@ def _get_dataset():
     return drop_outliers(df,labels)
 
 def build_and_save_pipeline(is_frequency_encode= True, is_cat=False):
+    '''
+    Build and save the feature engineering and preprocessing pipeline for British
+    Airways customer buying behaviour dataset.
+    Initialize with is_frequency_encode to either frequency encode the high cardinality features 
+    ['departure','arrival','booking_origin'] or not using is_frequency_encode.
+    Initialize with is_cat flag, if it is true,a preprocessing
+    pipeline is created which does not one hot encode the string based categorical features.
+    If not the string based categorical features are one hot encoded.
+
+    Args:
+        is_frequency_encode: Either True or False
+        is_cat: True or False. If True no one hot encoding
+    '''
     df,labels = _get_dataset()
 
     X_train,X_test,y_train,y_test = get_train_test_data(df,labels)
@@ -50,6 +63,16 @@ def build_and_save_pipeline(is_frequency_encode= True, is_cat=False):
 
 
 def get_preprocessing_pipeline(is_cat=False):
+    '''
+    Get the fitted and saved preprocessing pipeline.
+    Initialize with is_cat flag, if it is true,a preprocessing
+    pipeline is returned, which does not one hot encode the string based categorical features.
+    If not a preprocessing pipeline is returned where the string based
+    categorical features are one hot encoded.
+
+    Args:
+        is_cat: True or False. If True no one hot encoding
+    '''
     pipeline_path = None
     if is_cat:
         pipeline_path = parent/f'{config['pipeline']['preprocessing_cat']}'

@@ -7,6 +7,7 @@ def cyclic_name_handler(transformer,inputFeatures):
 
 # Helper function for sin and cosie encoding
 def encode_hours(X):
+    #Encode cyclic features using sin and cosine encoding
     return np.column_stack([np.sin(2*np.pi*X/24), np.cos(2*np.pi*X/24)])
 
 def encode_days(X):
@@ -14,7 +15,17 @@ def encode_days(X):
 
 
 def create_preprocessing_pipeline(df,is_cat=False):
+    '''
+    Create the preprocessing pipeline. If the flag is_cat is true,a preprocessing
+    pipeline is created which does not one hot encode the string based categorical features.
+    If not the string based categorical features are one hot encoded.
 
+    Args:
+        df(pd.Dataframe): British Airways customer buying behavior dataset
+        is_cat: True or False. If True no one hot encoding
+    Returns:
+        sklearn.pipeline.Pipeline: Preprocessing pipeline
+    '''
     num_continuous_cols = ['num_passengers', 'purchase_lead', 'length_of_stay',
          'flight_duration', 'extra_services_count']
     cyclic_cols = ['flight_hour','flight_day']

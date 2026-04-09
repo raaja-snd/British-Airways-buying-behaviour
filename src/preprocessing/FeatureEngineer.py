@@ -3,15 +3,41 @@ import pandas as pd
 import numpy as np
 
 class FeatureEngineer(BaseEstimator,TransformerMixin):
-
+    '''
+    Customer transformer to complete the feature engineering in British Airways 
+    customer buying behavior dataset. Call fit_transform() to complete feature engineering.
+    The fit_transform() method accepts pandas dataframe for the X value. if you are 
+    adding this to a pipeline get the completed feature engineering dataset using this class
+    and pass it as an argument to your next transformer or pipeline.
+    '''
     def __init__(self, is_frequency_encode):
+        '''
+        Initialize with a flag to either frequency encode the high cardinality features 
+        ['departure','arrival','booking_origin'] or not using is_frequency_encode
+
+        Args:
+            is_frequency_encode: Either True or False
+        '''
         super().__init__()
         self.is_frequency_encode = is_frequency_encode
     
     def fit(self,X,y):
+        '''
+        Fit the dataframe and label. Returns the transformer.
+
+        Args:
+            X(pd.Dataframe): British Airways customer buying behavior dataset
+            y(pd.Series): The labels for the dataset
+        '''
         return self
     
     def create_base_features(self,df):
+        '''
+        Complete base feature engineering like binning and extraction
+
+        Args:
+            df(pd.Dataframe): British Airways customer buying behavior dataset
+        '''
         #Map flight day in text to number in day of week
         days_mapping = {
             'Mon':1,
@@ -64,6 +90,13 @@ class FeatureEngineer(BaseEstimator,TransformerMixin):
         ## Interaction Features
 
     def create_interaction_features(self,df):
+        '''
+        Complete feature engineering using feature interactions, creating new feature using 2
+         or more features.
+
+        Args:
+            df(pd.Dataframe): British Airways customer buying behavior dataset
+        '''
 
         # Passengers taking extra services (ordinal)
         df['extra_services_count'] = df[['wants_extra_baggage','wants_preferred_seat','wants_in_flight_meals']].sum(axis=1)
@@ -90,6 +123,12 @@ class FeatureEngineer(BaseEstimator,TransformerMixin):
         return df
     
     def transform(self,df):
+        '''
+        Run the transformer on the dataset to complete the feature engineering.
+
+        Args:
+            df(pd.Dataframe): British Airways customer buying behavior dataset
+        '''
         df = df.copy(deep=True)
         df = self.create_base_features(df)
         df = self.create_interaction_features(df)
