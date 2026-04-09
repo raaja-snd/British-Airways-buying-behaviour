@@ -31,7 +31,7 @@ class LogisticRegressionTrainer(BaseTrainer):
     def train(self):
         super().train()
 
-        X_train_processed = self.preproccessing_pipeline.transforme(self.X_train)
+        X_train_processed = self.preproccessing_pipeline.transform(self.X_train)
 
         self.log_reg = LogisticRegressionCV(
         cv=5,penalty='l2',
@@ -49,7 +49,7 @@ class LogisticRegressionTrainer(BaseTrainer):
     def predict(self):
         super().predict()
         logger.info('Predicting')
-        X_test_processed = self.preproccessing_pipeline.transforme(self.X_test)
+        X_test_processed = self.preproccessing_pipeline.transform(self.X_test)
         prediction = self.log_reg.predict(X_test_processed)
         report = classification_report(self.y_test,prediction)
         print(report)
