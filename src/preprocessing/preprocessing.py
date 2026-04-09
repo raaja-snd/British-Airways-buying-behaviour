@@ -19,7 +19,6 @@ def create_preprocessing_pipeline(df,is_cat=False):
          'flight_duration', 'extra_services_count']
     cyclic_cols = ['flight_hour','flight_day']
     cat_cols = df.select_dtypes(exclude='number').columns.to_list()
-    cat_cols.remove('route')
 
     preprocess_pipeline = None
 

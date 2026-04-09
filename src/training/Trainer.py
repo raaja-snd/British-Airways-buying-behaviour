@@ -2,6 +2,7 @@ import pandas as pd
 import yaml
 from pathlib import Path
 from src.training.LogisticRegressionTrainer import LogisticRegressionTrainer
+from src.preprocessing.data_cleaning import drop_outliers
 from src.utils.logger import logger
 
 parent = Path(__file__).resolve().parents[2]
@@ -14,7 +15,7 @@ def get_dataset():
     df = pd.read_csv(str(dataset_path),encoding='ISO-8859-1')
     labels = df['booking_complete']
     df = df.drop(columns=['booking_complete'])
-    return df,labels
+    return drop_outliers(df,labels)
 
 def train_logistic_regression(df:pd.DataFrame,labels:pd.Series):
     log_trainer = LogisticRegressionTrainer(df,labels)

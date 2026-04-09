@@ -4,8 +4,9 @@ import numpy as np
 
 class FeatureEngineer(BaseEstimator,TransformerMixin):
 
-    def __init__(self):
+    def __init__(self, is_frequency_encode):
         super().__init__()
+        self.is_frequency_encode = is_frequency_encode
     
     def fit(self,X,y):
         return self
@@ -77,12 +78,24 @@ class FeatureEngineer(BaseEstimator,TransformerMixin):
         df['booking_behavior'] = np.select(booking_conditions,['urgent','planned_vacation','urgent_long_stay','planned_long_stay'],default='standard')
         return df
 
+    def frequency_encode(self, df):
+
+        # Frequency encoding for the high cardinality features
+
+        freq_cols = ['departure','arrival','booking_origin']
+        for col in freq_cols:
+            freq = df[col].value_counts(normalize=True)
+            df[col+'_freq'] = df[col].map(freq)
+        df.drop(columns=freq_cols,inplace=True)
+        return df
     
     def transform(self,df):
         df = df.copy(deep=True)
         df = self.create_base_features(df)
         df = self.create_interaction_features(df)
-        df.info()
+        if self.is_frequency_encode:
+            print('Frequency encoded')
+            df = self.frequency_encode(df)
         return df
     
     def get_feature_names_out(self, input_features=None):
