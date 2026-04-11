@@ -1,6 +1,6 @@
 # ✈️ British Airways: Customer Booking Prediction
 
-This project was developed as part of the **British Airways Data Science Virtual Internship**. The goal is to build a high performance machine learning model to predict the likelihood of a customer completing a flight booking based on their behavior and trip details.
+This project was developed as part of the Virtual Internship in Data Science organized by **British Airways** working on a real world flight booking dataset. The goal is to build a high performance machine learning model to predict the likelihood of a customer completing a flight booking based on their behavior and trip details.
 
 ---
 
